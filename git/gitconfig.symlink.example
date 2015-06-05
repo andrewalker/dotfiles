@@ -1,38 +1,20 @@
-# Sample gitconfig
-#
-
-[hub]
-        protocol = https
 [user]
-        name = AUTHORNAME
-        email = AUTHOREMAIL
-[credential]
-        helper = GIT_CREDENTIAL_HELPER
-[alias]
-        co = checkout
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
-        count   = !git shortlog -sn
+    name = AUTHORNAME
+    email = AUTHOREMAIL
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        ui = true
+    diff = true
+    status = true
+    branch = true
+    interactive = true
+    ui = true
+    pager = true
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
 [core]
-        excludesfile = ~/.gitignore
-        editor = vim
-[apply]
-        whitespace = nowarn
-[mergetool]
-        keepBackup = false
-[difftool]
-        prompt = false
-[help]
-        autocorrect = 1
+    excludesfile = ~/.gitignore
+    warnambiguousrefs = true
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to suppress warning message
-        default = simple
+    default = simple
