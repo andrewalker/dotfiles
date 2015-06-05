@@ -32,9 +32,6 @@ if has("autocmd")
      \| exe "normal! g'\"" | endif
 endif
 
-" au BufWinLeave * mkview
-" au BufReadPost * silent loadview
-
 set ruler
 set t_Co=256
 set viminfo='1000,f1,<500,:100,/20
@@ -45,10 +42,8 @@ filetype indent plugin on
 
 syntax enable
 
-" colorscheme zenburn
 let base16colorspace=256
 colorscheme base16-mocha
-" colorscheme solarized
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
