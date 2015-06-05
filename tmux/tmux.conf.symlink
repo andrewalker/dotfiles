@@ -60,8 +60,8 @@ bind-key -t vi-copy 'v' begin-selection
 bind-key -t vi-copy 'y' copy-selection
 
 # Other usefull key bindings
-bind-key C-a last-window
-bind-key a send-prefix
+bind-key C-z last-window
+bind-key z send-prefix
 
 unbind-key %
 unbind-key '"'
