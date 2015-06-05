@@ -1,2 +1,1 @@
-export PATH="./bin:/usr/local/bin:/usr/local/sbin:$ZSH/bin:$PATH"
-export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
+export PATH="/home/andre/.cabal/bin:/home/andre/.gem/ruby/2.1.0/bin:/home/andre/.gem/ruby/2.2.0/bin:/home/andre/.xmonad/bin:$ZSH/bin:$PATH"
