@@ -9,7 +9,9 @@ source $ZSH/oh-my-zsh.sh
 
 # all of our zsh files
 typeset -U config_files
+setopt extendedglob
 config_files=($DOT/(^oh-my-zsh.symlink/)#^oh-my-zsh.symlink/*.zsh)
+unsetopt extendedglob
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
