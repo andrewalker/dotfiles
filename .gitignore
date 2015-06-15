@@ -1,2 +1,4 @@
 /git/gitconfig.symlink
 /git/autoload/
+/vim/vim.symlink/swap/
+/vim/vim.symlink/view/

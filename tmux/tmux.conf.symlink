@@ -56,8 +56,15 @@ bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
 
+# Requires tmux 1.8 and xsel
 bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
+bind-key -t vi-copy 'y' copy-pipe "xsel -ib"
+bind-key C-p run "xsel -o | tmux load-buffer -"
+
+# Old (pre 1.8) config:
+#bind-key -t vi-copy 'v' begin-selection
+#bind-key -t vi-copy 'y' copy-selection
+#bind-key C-y run "tmux show-buffer | xsel -i"
 
 # Other usefull key bindings
 bind-key C-z last-window
