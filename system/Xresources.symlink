@@ -52,13 +52,10 @@
 URxvt*buffered:         false
 URxvt*.depth:            32
 URxvt.scrollBar:        false
-! URxvt.perl-ext-common:  default,matcher,clipboard
-!URxvt.perl-ext:
-!URxvt.perl-ext-common:
-URxvt.urlLauncher:      /usr/bin/firefox
 URxvt.matcher.button:   1
 URxvt.font:             xft:Inconsolata:size=9
-URxvt*termName:    xterm-256color
+URxvt*termName:         xterm-256color
+URxvt*cutchars:         `"()'*<>[]{|}
 
 URxvt.colorIT: #87af5f
 URxvt.colorBD: #d7d7d7
