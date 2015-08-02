@@ -43,8 +43,7 @@ filetype indent plugin on
 
 syntax enable
 
-let base16colorspace=256
-colorscheme base16-mocha
+colorscheme wombat256
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
