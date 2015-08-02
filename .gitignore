@@ -3,3 +3,6 @@
 /vim/vim.symlink/swap/
 /vim/vim.symlink/view/
 /vim/vim.symlink/.netrwhist
+/email/mutt.symlink/cache
+/email/mutt.symlink/certificates
+/email/mutt.symlink/temp

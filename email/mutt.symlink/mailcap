@@ -1,0 +1,7 @@
+text/html; firefox '%s'; test=test -n "$DISPLAY"; needsterminal;
+#text/html; /usr/bin/w3m -I %{charset} -cols 90 -dump -T text/html '%s'; copiousoutput
+text/html; /usr/bin/elinks -dump -dump-charset 'UTF-8' -force-html '%s'; copiousoutput
+text/*; cat %s | fold -sw 80; copiousoutput
+application/*; xdg-open %s && sleep 2
+image/*; xdg-open %s && sleep 2
+video/*; xdg-open %s && sleep 2

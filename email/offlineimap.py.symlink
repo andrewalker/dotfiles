@@ -1,0 +1,5 @@
+#!/bin/python
+from subprocess import check_output
+
+def get_pass():
+    return check_output("gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.awn.gpg | head -n1", shell=True).rstrip()

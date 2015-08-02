@@ -1,0 +1,25 @@
+[general]
+# List of accounts to be synced, separated by a comma.
+accounts = main
+pythonfile = ~/.offlineimap.py
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl = yes
+
+[Account main]
+localrepository = main-local
+remoterepository = main-remote
+status_backend = sqlite
+autorefresh = 5
+quick = 10
+
+[Repository main-local]
+type = Maildir
+localfolders = ~/Maildir
+
+[Repository main-remote]
+type = IMAP
+remotehost = mail.andrewalker.net
+remoteuser = andre@andrewalker.net
+remotepasseval = get_pass()
+keepalive = 600
+holdconnectionopen = yes
