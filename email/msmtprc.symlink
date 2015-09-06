@@ -11,7 +11,7 @@ host           mail.andrewalker.net
 port           587
 from           andre@andrewalker.net
 user           andre@andrewalker.net
-passwordeval   "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.awn.gpg"
+passwordeval   "gpg2 --quiet --for-your-eyes-only --no-tty --decrypt ~/.awn.gpg"
 
 # Set a default account
 account default : awn
