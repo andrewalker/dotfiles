@@ -55,7 +55,7 @@ URxvt.scrollBar:        false
 URxvt.matcher.button:   1
 URxvt.font:             xft:Inconsolata:size=9
 URxvt*termName:         xterm-256color
-URxvt*cutchars:         `"()'*<>[]{|}
+URxvt*cutchars:         '`"()\'*<>[]{|}'
 
 URxvt.colorIT: #87af5f
 URxvt.colorBD: #d7d7d7
