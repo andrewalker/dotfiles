@@ -1,0 +1,30 @@
+source-file ~/.tmux.conf.shared
+
+set-option -g prefix M-C-z
+bind-key M-C-z last-window
+bind-key z send-prefix
+
+# reload config without killing server
+bind r source-file ~/.tmux.conf.shell \; display-message "Config reloaded."
+
+set-option -g status-right 'Prefix M-C-z '
+set-option -g status-left ' Booking Shell  '
+set-option -g status-left-length 200
+
+# default statusbar colors
+set-option -g status-fg colour136
+set-option -g status-bg colour235
+set-option -g status-attr default
+
+set-window-option -g window-status-current-fg colour178
+set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-attr bold
+set-window-option -g window-status-current-format ' #W '
+
+# default window title colors
+set-window-option -g window-status-fg colour244
+set-window-option -g window-status-bg default
+set-window-option -g window-status-attr dim
+set-window-option -g window-status-format '#I#F#W'
+
+# vim: ft=conf

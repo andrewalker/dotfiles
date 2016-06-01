@@ -1,0 +1,30 @@
+source-file ~/.tmux.conf.shared
+
+set-option -g prefix C-z
+bind-key C-z last-window
+bind-key z send-prefix
+
+# reload config without killing server
+bind r source-file ~/.tmux.conf.dev \; display-message "Config reloaded."
+
+set-option -g status-right 'Prefix C-z '
+set-option -g status-left ' #([[ which dev-server-name ]] && dev-server-name || echo "unknown") '
+set-option -g status-left-length 200
+
+# default statusbar colors
+set-option -g status-fg colour137
+set-option -g status-bg colour236
+set-option -g status-attr default
+
+set-window-option -g window-status-current-fg colour179
+set-window-option -g window-status-current-bg colour236
+set-window-option -g window-status-current-attr bold
+set-window-option -g window-status-current-format ' #W '
+
+# default window title colors
+set-window-option -g window-status-fg colour246
+set-window-option -g window-status-bg default
+set-window-option -g window-status-attr dim
+set-window-option -g window-status-format '#I#F#W'
+
+# vim: ft=conf

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+SESSION_NAME="tmux-bk-local"
+GPG="/usr/local/bin/gpg2"
+SAMPLE_FILE="$HOME/.foo.gpg"
+CONFIG_FILE="$HOME/.tmux.conf.local"
+TMUX="/usr/local/bin/tmux"
+
+# force unlock gpg-agent before opening tmux, because syncmail needs it to
+# download my e-mail
+$GPG --quiet --decrypt $SAMPLE_FILE >/dev/null
+
+$TMUX new-session -d -s $SESSION_NAME -f $CONFIG_FILE
+
+$TMUX new-window -t $SESSION_NAME:2 -n 'Mail'
+$TMUX split-window -v
+$TMUX select-pane -t $SESSION_NAME:2.{top}
+$TMUX send-keys "syncmail 2" C-m
+$TMUX select-pane -t $SESSION_NAME:2.{bottom}
+$TMUX split-window -h
+$TMUX select-pane -t $SESSION_NAME:2.{bottom-left}
+$TMUX send-keys "mailwork" C-m
+$TMUX select-pane -t $SESSION_NAME:2.{bottom-right}
+$TMUX send-keys "mailpersonal" C-m
+
+$TMUX new-window -t $SESSION_NAME:3 -n 'WeeChat'
+$TMUX send-keys "ssh -L 4433:localhost:4433 hashbang -f -N" C-m
+$TMUX send-keys "weechat" C-m
+
+$TMUX attach-session -t $SESSION_NAME

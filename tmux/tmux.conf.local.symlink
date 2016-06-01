@@ -1,0 +1,35 @@
+source-file ~/.tmux.conf.shared
+
+set-option -g prefix C-z
+bind-key C-z last-window
+bind-key z send-prefix
+
+# reload config without killing server
+bind r source-file ~/.tmux.conf.local \; display-message "Config reloaded."
+
+set-option -g status-right '#(/usr/local/bin/rainbarf --rgb --battery --bright --tmux --bolt)'
+set-option -g status-left '#[fg=colour188,bold]%I:%M#[fg=colour244] local '
+
+# default statusbar colors
+set-option -g status-fg colour136
+set-option -g status-bg colour235
+set-option -g status-attr default
+
+set-window-option -g window-status-current-fg colour178
+set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-attr bold,bright
+set-window-option -g window-status-current-format ' #W '
+# default window title colors
+set-window-option -g window-status-fg colour244
+set-window-option -g window-status-bg default
+set-window-option -g window-status-attr dim
+set-window-option -g window-status-format '#I#F#W'
+
+# Requires tmux 1.8 and xsel
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-pipe "pbcopy"
+bind-key C-p run "pbpaste | tmux load-buffer -"
+
+set -g default-command "which reattach-to-user-namespace > /dev/null && reattach-to-user-namespace -l $SHELL || $SHELL -l"
+
+# vim: ft=conf
