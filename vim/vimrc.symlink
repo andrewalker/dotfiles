@@ -24,14 +24,8 @@ set showcmd
 set wildmenu
 set scrolloff=1
 
-if &listchars ==# 'eol:$'
-  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-endif
-
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-     \| exe "normal! g'\"" | endif
-endif
+set list
+set listchars=tab:>·,trail:·
 
 set ruler
 set t_Co=256
@@ -45,28 +39,18 @@ syntax enable
 
 colorscheme wombat256
 
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
 map ,sp :%s/\s\+$//g<Enter>
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 autocmd FileType perl,cpp,c,sql,php set number
 autocmd FileType perl set showmatch
-autocmd FileType make set noexpandtab
-
-let g:checkattach_filebrowser = 'ranger'
-let g:attach_check_keywords = ',anexo'
+autocmd FileType make,c,cpp set noexpandtab
+autocmd FileType make,c,cpp set tabstop=8
+autocmd FileType make,c,cpp set shiftwidth=8
 
 let perl_include_pod = 1
 let perl_extended_vars = 1
-
-map ,n YPi#<esc>
 
 vmap _c :s/^/#/gi<Enter>
 vmap _C :s/^#//gi<Enter>
