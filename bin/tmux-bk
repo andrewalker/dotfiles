@@ -10,7 +10,7 @@ TMUX="/usr/local/bin/tmux"
 # download my e-mail
 $GPG --quiet --decrypt $SAMPLE_FILE >/dev/null
 
-$TMUX new-session -d -s $SESSION_NAME -f $CONFIG_FILE
+$TMUX -f $CONFIG_FILE new-session -d -s $SESSION_NAME
 
 $TMUX new-window -t $SESSION_NAME:2 -n 'Mail'
 $TMUX split-window -v
