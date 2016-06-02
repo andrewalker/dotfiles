@@ -38,3 +38,8 @@ done
 unset config_files
 
 source ~/.secrets.zsh
+
+export LC_ALL="en_US.UTF-8"
+
+unsetopt RM_STAR_SILENT
+setopt RM_STAR_WAIT
