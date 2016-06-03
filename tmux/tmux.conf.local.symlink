@@ -7,8 +7,9 @@ bind-key z send-prefix
 # reload config without killing server
 bind r source-file ~/.tmux.conf.local \; display-message "Config reloaded."
 
-set-option -g status-right '#(/usr/local/bin/rainbarf --rgb --battery --bright --tmux --bolt)'
+set-option -g status-right '#(/usr/local/bin/rainbarf --rgb --battery --bolt --remaining)'
 set-option -g status-left '#[fg=colour188,bold]%I:%M#[fg=colour244] local '
+set-option -g status-left-length 200
 
 # default statusbar colors
 set-option -g status-fg colour136
