@@ -37,7 +37,7 @@ filetype indent plugin on
 
 syntax enable
 
-colorscheme wombat256
+colorscheme grb256
 
 map ,sp :%s/\s\+$//g<Enter>
 
