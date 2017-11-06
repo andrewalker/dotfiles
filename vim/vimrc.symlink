@@ -43,7 +43,7 @@ map ,sp :%s/\s\+$//g<Enter>
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-autocmd FileType perl,cpp,c,sql,php set number
+autocmd FileType perl,cpp,c,sql,php,ocaml set number
 autocmd FileType perl set showmatch
 autocmd FileType make,c,cpp set noexpandtab
 autocmd FileType make,c,cpp set tabstop=8

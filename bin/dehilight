@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ "$1" = "M" || "$1" = "-f" ]]
+then
+    tmux source-file ~/.tmux.conf.local >/dev/null
+    is_connected=`ls $HOME/.ssh/tmp/*$SSH_SHELL_HOSTNAME* | wc -l`;
+    if [[ -n "$SSH_SHELL_HOSTNAME" && $is_connected -gt '0' ]]
+    then
+        ssh shell '~/bin/dehilight'
+    fi
+fi

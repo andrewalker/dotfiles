@@ -1,0 +1,9 @@
+#!/bin/bash
+
+tmux set-option -g status-bg colour118 >/dev/null
+terminal-notifier -title 'Weechat' -message 'Go check your terminal.'
+is_connected=`ls $HOME/.ssh/tmp/*$SSH_SHELL_HOSTNAME* | wc -l`;
+if [[ -n "$SSH_SHELL_HOSTNAME" && $is_connected -gt '0' ]]
+then
+    ssh shell '~/bin/hilight'
+fi
