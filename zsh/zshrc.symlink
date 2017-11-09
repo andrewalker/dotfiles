@@ -1,17 +1,11 @@
 # shortcut to this dotfiles path is $DOT
 export DOT=$HOME/.dotfiles
-
-export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="philips"
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
-
 # all of our zsh files
 typeset -U config_files
-setopt extendedglob
-config_files=($DOT/(^oh-my-zsh.symlink/)#^oh-my-zsh.symlink/*.zsh)
-unsetopt extendedglob
+config_files=($DOT/*.zsh)
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
@@ -38,8 +32,6 @@ done
 unset config_files
 
 source ~/.secrets.zsh
-
-export LC_ALL="en_US.UTF-8"
 
 unsetopt RM_STAR_SILENT
 setopt RM_STAR_WAIT
