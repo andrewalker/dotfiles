@@ -59,3 +59,5 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 nnoremap <silent> tt :%!perltidy -q<Enter>
 vnoremap <silent> tt :!perltidy -q<Enter>
+
+let g:powerline_pycmd = "py3"
