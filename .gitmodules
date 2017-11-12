@@ -7,3 +7,6 @@
 [submodule "vim/bundle/vim-airline"]
 	path = vim/vim.symlink/bundle/vim-airline
 	url = git://github.com/vim-airline/vim-airline.git
+[submodule "zsh/zprezto.symlink"]
+	path = zsh/zprezto.symlink
+	url = git://github.com/sorin-ionescu/prezto.git
