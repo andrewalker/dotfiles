@@ -17,8 +17,6 @@ set smartcase
 set hlsearch
 set incsearch
 
-set complete-=i
-
 set laststatus=2
 set showcmd
 set wildmenu
@@ -29,22 +27,25 @@ set listchars=tab:>·,trail:·
 
 set ruler
 set t_Co=256
-set viminfo='1000,f1,<500,:100,/20
+set viminfo='1000,\"1000,f100,<500,:100,/20
 
-set directory=$HOME/.vim/swap//
+set directory=$HOME/.vim/swap/
 
 filetype indent plugin on
 
 syntax enable
 
-colorscheme grb256
+colorscheme desert
 
-map ,sp :%s/\s\+$//g<Enter>
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+map <Leader>sp :%s/\s\+$//g<Enter>
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 autocmd FileType perl,cpp,c,sql,php,ocaml set number
 autocmd FileType perl set showmatch
+autocmd FileType perl set path+=lib
 autocmd FileType make,c,cpp set noexpandtab
 autocmd FileType make,c,cpp set tabstop=8
 autocmd FileType make,c,cpp set shiftwidth=8
@@ -52,12 +53,16 @@ autocmd FileType make,c,cpp set shiftwidth=8
 let perl_include_pod = 1
 let perl_extended_vars = 1
 
-vmap _c :s/^/#/gi<Enter>
-vmap _C :s/^#//gi<Enter>
+vmap <Leader>c :s/^/#/gi<Enter>:nohl<Enter>
+vmap <Leader>C :s/^#//gi<Enter>:nohl<Enter>
 
 nnoremap <C-L> :nohl<CR><C-L>
 
 nnoremap <silent> tt :%!perltidy -q<Enter>
 vnoremap <silent> tt :!perltidy -q<Enter>
 
+nnoremap <Leader>pf :silent !~/.dotfiles/bin/tmux-try-split perldoc -f <cword>&<CR>
+nnoremap <Leader>pd :silent !~/.dotfiles/bin/tmux-try-split PERL5LIB=\$PERL5LIB:./lib perldoc <cword>&<CR>
+
 let g:airline_powerline_fonts = 1
+" let g:deoplete#enable_at_startup = 1

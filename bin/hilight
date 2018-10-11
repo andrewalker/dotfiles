@@ -1,9 +1,13 @@
 #!/bin/bash
 
-tmux set-option -g status-bg colour118 >/dev/null
-terminal-notifier -title 'Weechat' -message 'Go check your terminal.'
-is_connected=`ls $HOME/.ssh/tmp/*$SSH_SHELL_HOSTNAME* | wc -l`;
-if [[ -n "$SSH_SHELL_HOSTNAME" && $is_connected -gt '0' ]]
+is_looking_at_weechat=`tmux list-windows -F '"#{window_name}" "#{window_active}"' | grep '"weechat" "1"' | wc -l`
+if [[ $is_looking_at_weechat -eq 0 ]]
 then
-    ssh shell '~/bin/hilight'
+    notify-send -i user-available-symbolic "Weechat" "Go check your terminal."
+    tmux set-option -g status-bg colour118 >/dev/null
+    is_connected=`ls $HOME/.ssh/tmp/*$SSH_SHELL_HOSTNAME* | wc -l`;
+    if [[ -n "$SSH_SHELL_HOSTNAME" && $is_connected -gt '0' ]]
+    then
+        ssh shell '~/bin/hilight'
+    fi
 fi
