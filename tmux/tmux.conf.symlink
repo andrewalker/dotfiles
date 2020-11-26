@@ -1,2 +1,132 @@
-# if no config was defined, default to the local one
-source-file ~/.tmux.conf.local
+# reload config without killing server
+bind-key r source-file ~/.tmux.conf \; display-message "Config reloaded."
+
+# if session name is 0, use host_short
+is_development_server="#{m:*.dev.*,#{host}}"
+is_production_server="#{m:*.prod.*,#{host}}"
+
+set-option -g status-right ""
+set-option -g status-left "#{?#{==:#{session_name},0},#{host_short},#{session_name}} #{?$is_development_server,🛠,}"
+set-option -g status-left-style bg=colour235,fg=colour188,bold
+set-option -g status-left-length 200
+set-option -g status-style bg=colour235,fg=colour245,nobold,nobright,nodim
+
+set-option -g window-status-style bg=default,fg=colour244
+set-option -g window-status-activity-style bg=default,fg=colour244
+set-option -g window-status-bell-style bold,bright
+
+set-option -g window-status-separator ' '
+set-option -g window-status-format " #I  #[fg=colour245,bg=default]#W#{?window_bell_flag,*,} "
+set-option -g window-status-current-format "#[fg=colour235,bg=colour245]#[fg=colour235,bg=colour245] #I  #W #[fg=colour245,bg=colour235,nobold]"
+
+# From https://stackoverflow.com/a/61527970
+# SSH agent forwarding
+#
+# Ensure that SSH-Agent forwarding will work when re-attaching to the tmux
+#   session from a different SSH connection (after a dropped connection).
+#   This code will run upon tmux create, tmux attach, or config reload.
+#
+# If there is an SSH_AUTH_SOCK originally defined:
+#   1) Remove all SSH related env var names from update-environment.
+#      Without this, setenv cannot override variables such as SSH_AUTH_SOCK.
+#      Verify update-environment with: tmux show-option -g update-environment
+#   2) Force-set SSH_AUTH_SOCK to be a known location
+#      /tmp/ssh_auth_sock_tmux
+#   3) Force-create a link of the first found ssh-agent socket at the known location
+if-shell '[ -n $SSH_AUTH_SOCK ]' {
+    set-option -sg update-environment "DISPLAY WINDOWID XAUTHORITY";
+    set-environment -g SSH_AUTH_SOCK /tmp/ssh_auth_sock_tmux;
+    run-shell "ln -sf $(find /tmp/ssh-* -type s -readable | head -n 1) /tmp/ssh_auth_sock_tmux"
+}
+
+if-shell '[ -n $SSH_CLIENT ] \
+       && [ -n "$TMUX_YANK_REMOTE_PORT" ] \
+       && ss -ln | grep -q "[.:]$TMUX_YANK_REMOTE_PORT"' {
+    set-option -g @override_copy_command "nc localhost $TMUX_YANK_REMOTE_PORT"
+}
+
+# General options
+set-option -g base-index 1
+set-option -s escape-time 500
+set-option -s -g display-time 2000
+set-option -g visual-activity off
+set-option -g default-terminal "screen-256color"
+set -g terminal-overrides 'screen-256color:colors=256'
+
+# General window options
+# set-window-option -g aggressive-resize on
+set-window-option -g xterm-keys on
+set-option -g mouse on
+set-window-option -g monitor-activity on
+set-window-option -g automatic-rename on
+set-option -g status-justify left
+set-option -g history-limit 12000
+
+# message text
+set-option -g message-style bg=colour235,fg=colour166
+
+# Vi-like key bindings
+set-option -g status-keys vi
+set-window-option -g mode-keys vi
+
+# toggle mouse support
+bind-key m set-option mouse
+
+unbind-key C-b
+set-option -g prefix C-z
+bind-key z send-prefix
+bind-key Z resize-pane -Z
+
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+bind-key -r C-Left  resize-pane -L 5
+bind-key -r C-Down  resize-pane -D 5
+bind-key -r C-Up    resize-pane -U 5
+bind-key -r C-Right resize-pane -R 5
+
+unbind-key %
+unbind-key '"'
+bind-key \\ split-window -h -c "#{pane_current_path}"
+bind-key -  split-window -v -c "#{pane_current_path}"
+bind-key c  new-window      -c "#{pane_current_path}"
+
+# see: toggle on/off all keybindings · Issue #237 · tmux/tmux - https://github.com/tmux/tmux/issues/237
+
+# Also, change some visual styles when window keys are off
+bind -T root F12  \
+    set-option prefix None \;\
+    set-option key-table off \;\
+    if-shell -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+    refresh-client -S \;
+
+#    set-option status-style "fg=$color_status_text,bg=$color_window_off_status_bg" \;\
+#    set-option window-status-current-format "#[fg=$color_window_off_status_bg,bg=$color_window_off_status_current_bg]$separator_powerline_right#[default] #I:#W# #[fg=$color_window_off_status_current_bg,bg=$color_window_off_status_bg]$separator_powerline_right#[default]" \;\
+#    set-option window-status-current-style "fg=$color_dark,bold,bg=$color_window_off_status_current_bg" \;\
+
+bind -T off F12 \
+  set-option -u prefix \;\
+  set-option -u key-table \;\
+  set-option -u status-style \;\
+  set-option -u window-status-current-style \;\
+  set-option -u window-status-current-format \;\
+  refresh-client -S
+
+# List of plugins
+set-option -g @plugin 'tmux-plugins/tpm'
+set-option -g @plugin 'tmux-plugins/tmux-yank'
+set-option -g @plugin 'tmux-plugins/tmux-resurrect'
+set-option -g @plugin 'tmux-plugins/tmux-continuum'
+
+if-shell 'test ! -d ~/.tmux/plugins/tpm' {
+   run-shell 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'
+}
+
+if-shell 'test -f ~/.tmux/local.conf' 'source-file ~/.tmux/local.conf'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+
+# vim: ft=tmux

@@ -1,7 +1,0 @@
-#!/usr/bin/bash
-
-SESSION=`loginctl list-sessions | grep andre | awk '{print $1}'`
-if [ -n "$SESSION" ]
-then
-    loginctl lock-session $SESSION
-fi

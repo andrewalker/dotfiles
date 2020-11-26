@@ -3,6 +3,21 @@
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
+typeset -U config_files
+config_files=($ZSH/**/*.zsh)
+
+# load the path files
+for file in ${(M)${config_files:#*zprezto*}:#*/path.zsh}
+do
+    source $file
+done
+
+unset config_files
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+fpath[1,0]=~/.zsh/completion/
+
 source ~/.secrets.zsh
 
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
