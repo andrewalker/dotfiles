@@ -7,4 +7,4 @@ then
 fi
 
 # best effort! if there's an error, I can retry to install plugins later
-vim --not-a-term -c "PlugInstall" -c "quitall" >/dev/null 2>/dev/null
+echo "" | vim --not-a-term -c "PlugInstall" -c "quitall" >/dev/null 2>/dev/null

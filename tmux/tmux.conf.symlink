@@ -33,7 +33,7 @@ set-option -g window-status-current-format "#[fg=colour235,bg=colour245]#[fg=
 #   2) Force-set SSH_AUTH_SOCK to be a known location
 #      /tmp/ssh_auth_sock_tmux
 #   3) Force-create a link of the first found ssh-agent socket at the known location
-if-shell '[ -n $SSH_AUTH_SOCK ]' {
+if-shell '[[ -n $SSH_AUTH_SOCK ]] && [[ -n /tmp/ssh-*(#qN) ]]' {
     set-option -sg update-environment "DISPLAY WINDOWID XAUTHORITY";
     set-environment -g SSH_AUTH_SOCK /tmp/ssh_auth_sock_tmux;
     run-shell "ln -sf $(find /tmp/ssh-* -type s -readable | head -n 1) /tmp/ssh_auth_sock_tmux"
