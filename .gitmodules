@@ -10,3 +10,12 @@
 [submodule "tmux/plugin-tpm"]
 	path = tmux/plugin-tpm
 	url = git://github.com/tmux-plugins/tpm.git
+[submodule "vim/vim.symlink/pack/themes/gruvbox"]
+	path = vim/vim.symlink/pack/themes/start/gruvbox
+	url = git://github.com/morhetz/gruvbox.git
+[submodule "vim/vim.symlink/pack/plugins/vim-airline"]
+	path = vim/vim.symlink/pack/plugins/start/vim-airline
+	url = git://github.com/vim-airline/vim-airline.git
+[submodule "vim/vim.symlink/pack/plugins/vim-fugitive"]
+	path = vim/vim.symlink/pack/plugins/start/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
