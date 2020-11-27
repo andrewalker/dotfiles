@@ -1,10 +1,6 @@
 /git/gitconfig.symlink
 /vim/vim.symlink/autoload/
 /vim/vim.symlink/swap/
-/vim/vim.symlink/plugged/
 /vim/vim.symlink/view/
 /vim/vim.symlink/spell/
 /vim/vim.symlink/.netrwhist
-/email/mutt.symlink/caches
-/email/mutt.symlink/certificates
-/email/mutt.symlink/temp
