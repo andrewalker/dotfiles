@@ -1,12 +1,12 @@
 # reload config without killing server
 bind-key r source-file ~/.tmux.conf \; display-message "Config reloaded."
 
-# if session name is 0, use host_short
 is_development_server="#{m:*.dev.*,#{host}}"
 is_production_server="#{m:*.prod.*,#{host}}"
 
 set-option -g status-right ""
-set-option -g status-left "#{?#{==:#{session_name},0},#{host_short},#{session_name}} #{?$is_development_server,🛠,}"
+# if session name is 0, use host_short
+set-option -g status-left "#{?#{==:#{session_name},0},#{host_short},#{session_name}}"
 set-option -g status-left-style bg=colour235,fg=colour188,bold
 set-option -g status-left-length 200
 set-option -g status-style bg=colour235,fg=colour245,nobold,nobright,nodim
