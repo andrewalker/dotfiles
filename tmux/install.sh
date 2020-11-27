@@ -1,7 +1,6 @@
 #!/bin/sh
 
-if test ! -d ~/.tmux/plugins/tpm
-then
-   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-   ~/.tmux/plugins/tpm/bin/install_plugins
-fi
+this_dir=$(dirname $0)
+mkdir -p ~/.tmux/plugins
+ln -sf $this_dir/plugin-tpm ~/.tmux/plugins
+~/.tmux/plugins/tpm/bin/install_plugins

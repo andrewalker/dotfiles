@@ -7,3 +7,6 @@
 [submodule "plenv/plugin-perl-build"]
 	path = plenv/plugin-perl-build
 	url = git://github.com/tokuhirom/Perl-Build.git
+[submodule "tmux/plugin-tpm"]
+	path = tmux/plugin-tpm
+	url = git://github.com/tmux-plugins/tpm.git
