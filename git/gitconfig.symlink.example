@@ -8,15 +8,11 @@
     interactive = true
     ui = true
     pager = true
-[color "status"]
-    added = green
-    changed = yellow
-    untracked = red
 [core]
     excludesfile = ~/.gitignore
     warnambiguousrefs = true
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [push]
     default = simple
-[alias]
-	stashed = stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
+[pull]
+    rebase = true
