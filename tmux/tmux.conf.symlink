@@ -72,11 +72,11 @@ set-window-option -g mode-keys vi
 # toggle mouse support
 bind-key m set-option mouse
 
-unbind-key C-z
 unbind-key C-b
 set-option -g prefix C-z
 bind-key z send-prefix
 bind-key Z resize-pane -Z
+bind-key C-z last-window
 
 bind-key h select-pane -L
 bind-key j select-pane -D
