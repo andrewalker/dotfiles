@@ -71,6 +71,11 @@ nmap <Tab> ;tabnext<Enter>
 vmap <Leader>c ;s/^/#/gi<Enter>:nohl<Enter>
 vmap <Leader>C ;s/^#//gi<Enter>:nohl<Enter>
 
+nmap <Leader>gb ;Git blame<Enter>
+vmap <Leader>gb ;Git blame<Enter>
+nmap <Leader>gl ;Git log<Enter>
+nmap <Leader>gd ;Gdiffsplit<Enter>
+
 nnoremap <C-L> ;nohl<CR><C-L>
 
 nnoremap <silent> tt ;%!perltidy -q<Enter>
