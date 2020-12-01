@@ -3,21 +3,29 @@ bind-key r source-file ~/.tmux.conf \; display-message "Config reloaded."
 
 is_development_server="#{m:*.dev.*,#{host}}"
 is_production_server="#{m:*.prod.*,#{host}}"
+set-option -g @colour-off "colour245"
+set-option -g @colour-primary "colour12"
+set-option -g @colour-secondary "colour235"
 
-set-option -g status-right ""
+if-shell 'test -f ~/.tmux/local.conf' 'source-file ~/.tmux/local.conf'
+
+set-option -gF status-style "bg=#{@colour-secondary},fg=#{@colour-primary},nobold,nobright,nodim,push-default"
+set-option -goq status-right ""
 # if session name is 0, use host_short
-set-option -g status-left "#{?#{==:#{session_name},0},#{host_short},#{session_name}}"
-set-option -g status-left-style bg=colour235,fg=colour188,bold
+set-option -goq status-left "#{?#{==:#{session_name},0},#{host_short},#{session_name}}"
+set-option -gF status-left-style "default,fg=colour188,bold"
 set-option -g status-left-length 200
-set-option -g status-style bg=colour235,fg=colour245,nobold,nobright,nodim
+set-option -gF status-right-style "default"
 
-set-option -g window-status-style bg=default,fg=colour244
-set-option -g window-status-activity-style bg=default,fg=colour244
+set-option -gF window-status-style "bg=#{@colour-secondary},fg=#{@colour-off}"
+set-option -gF window-status-activity-style "bg=#{@colour-secondary},fg=#{@colour-off}"
 set-option -g window-status-bell-style bold,bright
 
 set-option -g window-status-separator ' '
-set-option -g window-status-format " #I  #[fg=colour245,bg=default]#W#{?window_bell_flag,*,} "
-set-option -g window-status-current-format "#[fg=colour235,bg=colour245]#[fg=colour235,bg=colour245] #I  #W #[fg=colour245,bg=colour235,nobold]"
+set-option -g window-status-format " #I  #[fg=#{@colour-primary},bg=default]#W#{?window_bell_flag,*,} "
+set-option -g window-status-current-format "#[fg=#{@colour-secondary},bg=#{@colour-primary}]#[fg=#{@colour-secondary},bg=#{@colour-primary}] #I  #W #[fg=#{@colour-primary},bg=#{@colour-secondary},nobold]"
+set-option -gF message-style "bg=#{@colour-secondary},fg=#{@colour-primary}"
+
 
 # From https://stackoverflow.com/a/61527970
 # SSH agent forwarding
@@ -62,9 +70,6 @@ set-window-option -g automatic-rename on
 set-option -g status-justify left
 set-option -g history-limit 12000
 
-# message text
-set-option -g message-style bg=colour235,fg=colour166
-
 # Vi-like key bindings
 set-option -g status-keys vi
 set-window-option -g mode-keys vi
@@ -95,33 +100,25 @@ bind-key -  split-window -v -c "#{pane_current_path}"
 bind-key c  new-window      -c "#{pane_current_path}"
 
 # see: toggle on/off all keybindings · Issue #237 · tmux/tmux - https://github.com/tmux/tmux/issues/237
-
-# Also, change some visual styles when window keys are off
-bind -T root F12  \
+bind-key -T root F12 \
     set-option prefix None \;\
     set-option key-table off \;\
     if-shell -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
-    refresh-client -S \;
+    set-option -gF @colour-primary "#{@colour-off}" \;\
+    refresh-client -S
 
-#    set-option status-style "fg=$color_status_text,bg=$color_window_off_status_bg" \;\
-#    set-option window-status-current-format "#[fg=$color_window_off_status_bg,bg=$color_window_off_status_current_bg]$separator_powerline_right#[default] #I:#W# #[fg=$color_window_off_status_current_bg,bg=$color_window_off_status_bg]$separator_powerline_right#[default]" \;\
-#    set-option window-status-current-style "fg=$color_dark,bold,bg=$color_window_off_status_current_bg" \;\
-
-bind -T off F12 \
-  set-option -u prefix \;\
-  set-option -u key-table \;\
-  set-option -u status-style \;\
-  set-option -u window-status-current-style \;\
-  set-option -u window-status-current-format \;\
-  refresh-client -S
+bind-key -T off F12 \
+    set-option -u prefix \;\
+    set-option -u key-table \;\
+    set-option -ug @colour-primary \;\
+    set-option -ug @colour-secondary \;\
+    source-file ~/.tmux.conf
 
 # List of plugins
 set-option -g @plugin 'tmux-plugins/tpm'
 set-option -g @plugin 'tmux-plugins/tmux-yank'
 set-option -g @plugin 'tmux-plugins/tmux-resurrect'
 set-option -g @plugin 'tmux-plugins/tmux-continuum'
-
-if-shell 'test -f ~/.tmux/local.conf' 'source-file ~/.tmux/local.conf'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run '~/.tmux/plugins/tpm/tpm'
