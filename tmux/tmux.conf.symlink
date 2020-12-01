@@ -36,7 +36,7 @@ set-option -g window-status-current-format "#[fg=colour235,bg=colour245]#[fg=
 if-shell '[[ -n $SSH_AUTH_SOCK ]] && [[ -n /tmp/ssh-*(#qN) ]]' {
     set-option -sg update-environment "DISPLAY WINDOWID XAUTHORITY";
     set-environment -g SSH_AUTH_SOCK /tmp/ssh_auth_sock_tmux;
-    run-shell "ln -sf $(find /tmp/ssh-* -type s -readable | head -n 1) /tmp/ssh_auth_sock_tmux"
+    run-shell "ln -sf -T $(find /tmp/ssh-* -type s -readable | head -n 1) /tmp/ssh_auth_sock_tmux"
 }
 
 if-shell '[ -n $SSH_CLIENT ] \
