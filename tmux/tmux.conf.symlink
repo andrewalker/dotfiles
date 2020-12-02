@@ -5,7 +5,7 @@ is_development_server="#{m:*.dev.*,#{host}}"
 is_production_server="#{m:*.prod.*,#{host}}"
 set-option -g @colour-off "colour245"
 set-option -g @colour-primary "colour12"
-set-option -g @colour-secondary "colour235"
+set-option -g @colour-secondary "colour237"
 
 if-shell 'test -f ~/.tmux/local.conf' 'source-file ~/.tmux/local.conf'
 
