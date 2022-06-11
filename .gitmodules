@@ -1,12 +1,6 @@
 [submodule "zsh/zprezto.symlink"]
 	path = zsh/zprezto.symlink
 	url = git://github.com/sorin-ionescu/prezto.git
-[submodule "plenv/plenv.symlink"]
-	path = plenv/plenv.symlink
-	url = git://github.com/tokuhirom/plenv.git
-[submodule "plenv/plugin-perl-build"]
-	path = plenv/plugin-perl-build
-	url = git://github.com/tokuhirom/Perl-Build.git
 [submodule "tmux/plugin-tpm"]
 	path = tmux/plugin-tpm
 	url = git://github.com/tmux-plugins/tpm.git
