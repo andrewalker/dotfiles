@@ -114,13 +114,13 @@ bind-key -T off F12 \
     set-option -ug @colour-secondary \;\
     source-file ~/.tmux.conf
 
-# List of plugins
-set-option -g @plugin 'tmux-plugins/tpm'
-set-option -g @plugin 'tmux-plugins/tmux-yank'
-set-option -g @plugin 'tmux-plugins/tmux-resurrect'
-set-option -g @plugin 'tmux-plugins/tmux-continuum'
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run '~/.tmux/plugins/tpm/tpm'
+## List of plugins
+#set-option -g @plugin 'tmux-plugins/tpm'
+#set-option -g @plugin 'tmux-plugins/tmux-yank'
+#set-option -g @plugin 'tmux-plugins/tmux-resurrect'
+#set-option -g @plugin 'tmux-plugins/tmux-continuum'
+#
+## Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+#run '~/.tmux/plugins/tpm/tpm'
 
 # vim: ft=tmux

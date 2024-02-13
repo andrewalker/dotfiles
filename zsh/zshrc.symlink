@@ -7,6 +7,7 @@ fi
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 export STARSHIP_CONFIG=$HOME/.dotfiles/starship/starship.toml
+export EDITOR="vim"
 
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
@@ -148,8 +149,11 @@ alias mv="mv -i"
 alias cp="cp -i"
 alias ln="ln -i"
 
-source /usr/share/fzf/key-bindings.zsh
+if [ -f /usr/share/fzf/key-bindings.zsh ]
+then
+    source /usr/share/fzf/key-bindings.zsh
+elif [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]
+    source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+fi
 
 eval "$(starship init zsh)"
-
-export EDITOR="vim"
