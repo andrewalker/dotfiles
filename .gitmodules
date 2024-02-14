@@ -1,9 +1,9 @@
 [submodule "vim/vim.symlink/pack/plugins/vim-airline"]
 	path = vim/vim.symlink/bundle/vim-airline
-	url = git://github.com/vim-airline/vim-airline.git
+	url = https://github.com/vim-airline/vim-airline.git
 [submodule "vim/vim.symlink/pack/plugins/vim-fugitive"]
 	path = vim/vim.symlink/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/vim.symlink/bundle/nord"]
 	path = vim/vim.symlink/bundle/nord
 	url = https://github.com/nordtheme/vim.git

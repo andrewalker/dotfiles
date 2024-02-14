@@ -36,7 +36,7 @@ filetype indent plugin on
 
 syntax enable
 
-colorscheme gruvbox
+colorscheme nord
 
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
