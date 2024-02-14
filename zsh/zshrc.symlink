@@ -8,6 +8,7 @@ fi
 export ZSH=$HOME/.dotfiles
 export STARSHIP_CONFIG=$HOME/.dotfiles/starship/starship.toml
 export EDITOR="vim"
+bindkey -e
 
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
@@ -153,6 +154,7 @@ if [ -f /usr/share/fzf/key-bindings.zsh ]
 then
     source /usr/share/fzf/key-bindings.zsh
 elif [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]
+then
     source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 fi
 
