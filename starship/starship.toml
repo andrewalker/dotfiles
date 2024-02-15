@@ -26,10 +26,10 @@ format = '[$context(\[$namespace\])]($style) '
 disabled = true
 
 [kotlin]
-format = 'via [$symbol]($style)'
+format = '[$symbol]($style)'
 
 [java]
-format = 'via [$symbol]($style)'
+format = '[$symbol]($style)'
 
 [gradle]
-format = 'via [$symbol]($style)'
+format = '[$symbol]($style)'
