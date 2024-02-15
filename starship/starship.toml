@@ -25,5 +25,11 @@ format = '[$context(\[$namespace\])]($style) '
 [line_break]
 disabled = true
 
-[package]
-disabled = true
+[kotlin]
+format = 'via [$symbol]($style)'
+
+[java]
+format = 'via [$symbol]($style)'
+
+[gradle]
+format = 'via [$symbol]($style)'
