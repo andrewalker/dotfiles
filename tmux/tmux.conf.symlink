@@ -114,6 +114,10 @@ bind-key -T off F12 \
     set-option -ug @colour-secondary \;\
     source-file ~/.tmux.conf
 
+set -g allow-passthrough on
+set -ga update-environment TERM
+set -ga update-environment TERM_PROGRAM
+
 ## List of plugins
 #set-option -g @plugin 'tmux-plugins/tpm'
 #set-option -g @plugin 'tmux-plugins/tmux-yank'
