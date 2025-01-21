@@ -149,7 +149,7 @@ alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -i"
 alias ln="ln -i"
-alias vim="XDG_CONFIG_DIR=~/.dotfiles nvim"
+alias vim="XDG_CONFIG_HOME=~/.dotfiles nvim"
 
 if [ -f /usr/share/fzf/key-bindings.zsh ]
 then
