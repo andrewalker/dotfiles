@@ -7,6 +7,7 @@ fi
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 export STARSHIP_CONFIG=$HOME/.dotfiles/starship/starship.toml
+export NVIM_CONFIG=$HOME/.dotfiles/nvim
 export EDITOR="vim"
 bindkey -e
 
@@ -149,7 +150,7 @@ alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -i"
 alias ln="ln -i"
-alias vim="XDG_CONFIG_HOME=~/.dotfiles nvim"
+alias vim="nvim -u $NVIM_CONFIG/init.lua"
 
 if [ -f /usr/share/fzf/key-bindings.zsh ]
 then
