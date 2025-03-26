@@ -6,15 +6,15 @@ packages:
     - fzf
     - zoxide
     - starship
-    - alacritty
     - tmux
+    - fd
+    - ripgrep
+    casks:
+    - alacritty
     - font-iosevka
     - font-iosevka-nerd-font
     - font-iosevka-term-nerd-font
     - font-iosevka-term-slab-nerd-font
-    - fd
-    - ripgrep
-    casks: []
   archlinux:
     desktop:
     - stylua
