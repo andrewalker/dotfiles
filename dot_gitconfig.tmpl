@@ -1,8 +1,8 @@
 [user]
     name = André Walker
     email = {{ .email }}
-{{- if ne .git.signingkey "" }}
-    signingkey = {{ .git.signingkey }}
+{{- if .work }}
+    signingkey = {{ onepasswordRead "op://Employee/id_ed25519/public key" }}
 {{- end }}
 [color]
     diff = true
@@ -22,7 +22,11 @@
     rebase = true
 [init]
     defaultBranch = main
-{{- if ne .git.signingkey "" -}}
+{{ if .work -}}
+[gpg]
+    format = ssh
+[gpg "ssh"]
+    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
     gpgsign = true
 {{- end -}}
