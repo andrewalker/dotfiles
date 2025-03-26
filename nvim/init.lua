@@ -69,6 +69,12 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.filetype.add({
+  filename = {
+    ["copy.bara.sky"] = "starlark",
+  }
+})
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 --
@@ -753,6 +759,11 @@ require("lazy").setup({
     config = function()
       require("nord").setup({})
       vim.cmd.colorscheme("nord")
+    end,
+  },
+  {
+    "grafana/vim-alloy",
+    config = function()
     end,
   },
 
