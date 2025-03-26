@@ -13,7 +13,7 @@ cask {{ . | quote }}
 {{ end -}}
 EOF
 
-{{- else if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch")) -}}
+{{ else if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch")) -}}
 
 sudo pacman -S --needed --quiet --noconfirm {{ .packages.archlinux.shell | join " " }}
 
