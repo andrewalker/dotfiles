@@ -12,6 +12,8 @@ packages:
     - font-iosevka-nerd-font
     - font-iosevka-term-nerd-font
     - font-iosevka-term-slab-nerd-font
+    - fd
+    - ripgrep
     casks: []
   archlinux:
     desktop:
@@ -23,6 +25,8 @@ packages:
     - ttf-iosevkaterm-nerd
     - ttf-iosevkatermslab-nerd
     shell:
+    - fd
+    - ripgrep
     - neovim
     - fzf
     - zoxide
