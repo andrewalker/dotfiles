@@ -1,9 +1,9 @@
 [user]
     name = André Walker
     email = {{ .email }}
-{{- if ne .git.signingkey "" -}}
+{{- if ne .git.signingkey "" }}
     signingkey = {{ .git.signingkey }}
-{{- end -}}
+{{- end }}
 [color]
     diff = true
     status = true

@@ -8,14 +8,22 @@ packages:
     - starship
     - alacritty
     - tmux
+    - font-iosevka
+    - font-iosevka-nerd-font
+    - font-iosevka-term-nerd-font
+    - font-iosevka-term-slab-nerd-font
     casks: []
   archlinux:
     desktop:
     - stylua
-    - nerdfont(s)?
     - alacritty
+    - ttc-iosevka
+    - ttc-iosevka-slab
+    - ttf-iosevka-nerd
+    - ttf-iosevkaterm-nerd
+    - ttf-iosevkatermslab-nerd
     shell:
-    - nvim
+    - neovim
     - fzf
     - zoxide
     - starship
