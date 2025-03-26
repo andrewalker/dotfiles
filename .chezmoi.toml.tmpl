@@ -1,0 +1,42 @@
+{{/* boolean feature tags – inspiration from twpayne/dotfiles */}}
+{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $work := false -}}{{/* true if this machine is a work machine */}}
+{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
+{{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+{{- "" -}}
+
+{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{-   $ephemeral = true -}}
+{{-   $headless = true -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "darwin" -}}
+{{-     $personal  false -}}
+{{-     $work = true -}}
+{{-     $headless = false -}}
+{{-     $ephemeral = false -}}
+{{- else if eq .chezmoi.hostname "x12" -}}
+{{-     $personal = true -}}
+{{-     $work = false -}}
+{{-     $headless = false -}}
+{{-     $ephemeral = false -}}
+{{- else -}}
+{{-     $personal = false -}}
+{{-     $work = false -}}
+{{- end -}}
+
+{{- $email := "" -}}
+
+{{- if (and (not $headless) (not $ephemeral)) -}}
+{{-     $email = promptStringOnce . "email" "Email address" -}}
+{{- else -}}
+{{-     $email = "fake@example.com" -}}
+{{- end -}}
+
+[data]
+ephemeral = {{ $ephemeral }}
+email = {{ $email | quote }}
+work = {{ $work }}
+headless = {{ $headless }}
+personal = {{ $personal }}

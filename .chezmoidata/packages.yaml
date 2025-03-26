@@ -1,0 +1,22 @@
+packages:
+  darwin:
+    brews:
+    - nvim
+    - stylua
+    - fzf
+    - zoxide
+    - starship
+    - alacritty
+    - tmux
+    casks: []
+  archlinux:
+    desktop:
+    - stylua
+    - nerdfont(s)?
+    - alacritty
+    shell:
+    - nvim
+    - fzf
+    - zoxide
+    - starship
+    - tmux
