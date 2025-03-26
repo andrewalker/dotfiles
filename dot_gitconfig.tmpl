@@ -1,0 +1,28 @@
+[user]
+    name = André Walker
+    email = {{ .email }}
+{{- if ne .git.signingkey "" -}}
+    signingkey = {{ .git.signingkey }}
+{{- end -}}
+[color]
+    diff = true
+    status = true
+    branch = true
+    interactive = true
+    ui = true
+    pager = true
+[core]
+    excludesfile = ~/.gitignore
+    warnambiguousrefs = true
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[push]
+    default = simple
+    autoSetupRemote = true
+[pull]
+    rebase = true
+[init]
+    defaultBranch = main
+{{- if ne .git.signingkey "" -}}
+[commit]
+    gpgsign = true
+{{- end -}}
