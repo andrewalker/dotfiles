@@ -9,6 +9,7 @@ packages:
     - tmux
     - fd
     - ripgrep
+    - yazi
     casks:
     - alacritty
     - font-iosevka
@@ -32,3 +33,4 @@ packages:
     - zoxide
     - starship
     - tmux
+    - yazi
