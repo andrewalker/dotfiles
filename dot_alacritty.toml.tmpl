@@ -3,15 +3,27 @@ size = 17.0
 
 [font.normal]
 family = "Iosevka Term Slab"
+{{ if .alacritty.lightfont -}}
+style = "Light"
+{{- else -}}
 style = "Regular"
+{{- end }}
 
 [font.italic]
 family = "Iosevka Term Slab"
+{{ if .alacritty.lightfont -}}
+style = "Light Italic"
+{{- else -}}
 style = "Italic"
+{{- end }}
 
 [font.bold]
 family = "Iosevka Term Slab"
+{{ if .alacritty.lightfont -}}
+style = "Regular"
+{{- else -}}
 style = "Bold"
+{{- end }}
 
 # TOML interpretation of the https://github.com/nordtheme/alacritty
 # See also: https://github.com/nordtheme/alacritty/issues/40

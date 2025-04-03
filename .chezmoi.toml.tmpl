@@ -3,6 +3,7 @@
 {{- $work := false -}}{{/* true if this machine is a work machine */}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+{{- $lightfont := false -}}{{/* fixes rendering differences between darwin and linux for Iosevka Term Slab */}}
 {{- "" -}}
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
@@ -16,6 +17,7 @@
 {{-     $work = true -}}
 {{-     $headless = false -}}
 {{-     $ephemeral = false -}}
+{{-     $lightfont = true -}}
 {{- else if eq .chezmoi.hostname "x12" -}}
 {{-     $personal = true -}}
 {{-     $work = false -}}
@@ -40,3 +42,6 @@ email = {{ $email | quote }}
 work = {{ $work }}
 headless = {{ $headless }}
 personal = {{ $personal }}
+
+[data.alacritty]
+lightfont = {{ $lightfont }}
