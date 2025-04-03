@@ -1,9 +1,17 @@
 [font]
-size = 15.0
+size = 17.0
 
 [font.normal]
 family = "Iosevka Term Slab"
 style = "Regular"
+
+[font.italic]
+family = "Iosevka Term Slab"
+style = "Italic"
+
+[font.bold]
+family = "Iosevka Term Slab"
+style = "Bold"
 
 # TOML interpretation of the https://github.com/nordtheme/alacritty
 # See also: https://github.com/nordtheme/alacritty/issues/40

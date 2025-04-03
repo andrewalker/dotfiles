@@ -27,6 +27,9 @@
     format = ssh
 [gpg "ssh"]
     program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{- end -}}
 [commit]
+    verbose = true
+{{ if .work -}}
     gpgsign = true
 {{- end -}}
