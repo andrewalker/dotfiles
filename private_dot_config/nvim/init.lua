@@ -82,6 +82,9 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
+-- rest.nvim
+vim.keymap.set("n", "<leader>t", "<cmd>Rest run<CR>", { desc = "Run with rest.nvim" })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -130,6 +133,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+  "vladdoster/remember.nvim",
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -237,7 +241,6 @@ require("lazy").setup({
   { -- Fuzzy Finder (files, lsp, etc)
     "nvim-telescope/telescope.nvim",
     event = "VimEnter",
-    branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -615,6 +618,7 @@ require("lazy").setup({
       formatters_by_ft = {
         lua = { "stylua" },
         rust = { "rustfmt" },
+        json = { "jq" },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -769,82 +773,28 @@ require("lazy").setup({
     },
   },
 
-  { -- Highlight, edit, and navigate code
-    "nvim-treesitter/nvim-treesitter",
-    lazy = false, -- upstream does not support lazy-loading
-    build = ":TSUpdate",
-    config = function()
-      local ts = require("nvim-treesitter")
-      ts.setup()
-
-      local installed = {}
-      for _, lang in ipairs(ts.get_installed()) do
-        installed[lang] = true
-      end
-
-      local function ensure(langs)
-        local missing = vim.tbl_filter(function(lang)
-          return not installed[lang]
-        end, langs)
-        if #missing == 0 then
-          return
-        end
-        ts.install(missing)
-        for _, lang in ipairs(missing) do
-          installed[lang] = true
-        end
-      end
-
-      ensure({
-        "bash",
-        "c",
-        "diff",
-        "html",
-        "lua",
-        "luadoc",
-        "markdown",
-        "markdown_inline",
-        "query",
-        "vim",
-        "vimdoc",
-      })
-
-      local available
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function(ev)
-          local filetype = vim.bo[ev.buf].filetype
-          local lang = vim.treesitter.language.get_lang(filetype)
-          if not lang then
-            return
-          end
-
-          -- Replaces the old `auto_install`: parsers arrive asynchronously, so
-          -- the triggering buffer highlights on reopen rather than immediately.
-          if not installed[lang] then
-            available = available or ts.get_available()
-            if vim.tbl_contains(available, lang) then
-              ensure({ lang })
-            end
-            return
-          end
-
-          if not pcall(vim.treesitter.start, ev.buf, lang) then
-            return
-          end
-
-          if filetype == "ruby" then
-            vim.bo[ev.buf].syntax = "on"
-          else
-            vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-          end
+  {
+    "rest-nvim/rest.nvim",
+    ft = "http",
+    build = false,
+    dependencies = {
+      "j-hui/fidget.nvim",
+      "nvim-neotest/nvim-nio",
+      {
+        -- Lazy.nvim does not recognize this library's rocksfile, so add it
+        -- to package path manually.
+        "manoelcampos/xml2lua",
+        config = function(plugin)
+          package.path = package.path .. ";" .. plugin.dir .. "/?.lua"
         end,
-      })
-    end,
+      },
+      "lunarmodules/lua-mimetypes",
+    },
   },
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
   },
   {
